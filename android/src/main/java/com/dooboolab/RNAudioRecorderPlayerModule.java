@@ -98,10 +98,16 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
         ? audioSet.getInt("OutputFormatAndroid") : MediaRecorder.OutputFormat.MPEG_4);
       mediaRecorder.setAudioEncoder(audioSet.hasKey("AudioEncoderAndroid")
         ? audioSet.getInt("AudioEncoderAndroid") : MediaRecorder.AudioEncoder.AAC);
+      mediaRecorder.setAudioEncodingBitRate(audioSet.hasKey("AudioEncodingBitRate")
+        ? audioSet.getInt("AudioEncodingBitRate") : 256000);
+      mediaRecorder.setAudioSamplingRate(audioSet.hasKey("AudioSamplingRate")
+        ? audioSet.getInt("AudioSamplingRate") : 16000);
     } else {
       mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
       mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+      mediaRecorder.setAudioEncodingBitRate(256000);
+      mediaRecorder.setAudioSamplingRate(16000);
     }
 
     mediaRecorder.setOutputFile(audioFileURL);
@@ -307,7 +313,7 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
     }
 
     if (mediaPlayer == null) {
-      promise.reject("stopPlay","mediaPlayer is null.");
+      // promise.reject("stopPlay","mediaPlayer is null.");
       return;
     }
 

@@ -93,6 +93,8 @@ export interface AudioSet {
   AudioSourceAndroid?: AudioSourceAndroidType;
   OutputFormatAndroid?: OutputFormatAndroidType;
   AudioEncoderAndroid?: AudioEncoderAndroidType;
+  AudioEncodingBitRate?: number;
+  AudioSamplingRate?: number
 }
 
 const pad = (num: number): string => {
